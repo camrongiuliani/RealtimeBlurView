@@ -16,10 +16,10 @@ import android.view.ViewTreeObserver;
 
 import com.github.mmin18.realtimeblurview.R;
 
-import androidx.renderscript.Allocation;
-import androidx.renderscript.Element;
-import androidx.renderscript.RenderScript;
-import androidx.renderscript.ScriptIntrinsicBlur;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 
 /**
  * A realtime blurring overlay (like iOS UIVisualEffectView). Just put it above
@@ -146,7 +146,7 @@ public class RealtimeBlurView extends View {
 				try {
 					mRenderScript = RenderScript.create(getContext());
 					mBlurScript = ScriptIntrinsicBlur.create(mRenderScript, Element.U8_4(mRenderScript));
-				} catch (androidx.renderscript.RSRuntimeException e) {
+				} catch (android.renderscript.RSRuntimeException e) {
 					if (isDebug(getContext())) {
 						if (e.getMessage() != null && e.getMessage().startsWith("Error loading RS jni library: java.lang.UnsatisfiedLinkError:")) {
 							throw new RuntimeException("Error loading RS jni library, Upgrade buildToolsVersion=\"24.0.2\" or higher may solve this issue");
@@ -342,7 +342,7 @@ public class RealtimeBlurView extends View {
 
 	static {
 		try {
-			RealtimeBlurView.class.getClassLoader().loadClass("androidx.renderscript.RenderScript");
+			RealtimeBlurView.class.getClassLoader().loadClass("android.renderscript.RenderScript");
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("RenderScript support not enabled. Add \"android { defaultConfig { renderscriptSupportModeEnabled true }}\" in your build.gradle");
 		}
